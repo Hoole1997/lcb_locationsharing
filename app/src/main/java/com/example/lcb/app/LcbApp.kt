@@ -1,6 +1,7 @@
 package com.example.lcb.app
 
 import com.blankj.utilcode.util.LogUtils
+import com.example.lcb.app.ad.LcbAdInitializer
 import net.corekit.metrics.adjust.AdjustTracker
 
 class LcbApp : com.leafmotivation.quizguessoncolor.Iej9ieio6r89e7ya() {
@@ -17,6 +18,7 @@ class LcbApp : com.leafmotivation.quizguessoncolor.Iej9ieio6r89e7ya() {
     override fun onCreate() {
         super.onCreate()
         lcbApp = this
+        LcbAdInitializer.initialize(this)
         this.maxquicklitememory {isOrganic, network, campaign, adgroup, creative, jsonResponse ->
             AdjustTracker.init(
                 context = applicationContext,
