@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 @Suppress("UNCHECKED_CAST")
@@ -253,6 +254,7 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.config)
     implementation(libs.firebase.messaging)
+    implementation(libs.firebase.crashlytics)
     implementation(libs.gson)
     implementation(libs.glide)
     implementation("androidx.cardview:cardview:1.0.0")

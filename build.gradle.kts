@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.room) apply false
     alias(libs.plugins.google.ksp) apply false
     alias(libs.plugins.google.gms.google.services) apply false
+    alias(libs.plugins.google.firebase.crashlytics) apply false
 }
 
 val taskNames = gradle.startParameter.taskNames
