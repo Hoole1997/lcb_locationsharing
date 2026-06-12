@@ -97,15 +97,6 @@ val hasGoogleReleaseSigning = googleReleaseKeystoreFile.isFile &&
     googleReleaseStorePassword.isNotEmpty() &&
     googleReleaseKeyAlias.isNotEmpty() &&
     googleReleaseKeyPassword.isNotEmpty()
-val requiresGoogleReleaseSigning = gradle.startParameter.taskNames.any { taskName ->
-    val lowerTaskName = taskName.lowercase()
-    lowerTaskName.contains("googlerelease") &&
-        (
-            lowerTaskName.contains("bundle") ||
-                lowerTaskName.contains("assemble") ||
-                lowerTaskName.contains("package")
-            )
-}
 val googleReleaseAabName = "lcb_template_release_$resolvedVersionName.aab"
 val releaseMinifyEnabled = booleanGradleProperty("android.release.minifyEnabled", true)
 val releaseShrinkResourcesEnabled = booleanGradleProperty("android.release.shrinkResourcesEnabled", false)
@@ -215,15 +206,8 @@ android {
         release {
             isMinifyEnabled = releaseMinifyEnabled
             isShrinkResources = releaseMinifyEnabled && releaseShrinkResourcesEnabled
-            if (hasGoogleReleaseSigning || requiresGoogleReleaseSigning) {
+            if (hasGoogleReleaseSigning) {
                 signingConfig = signingConfigs.getByName("googleRelease")
-            }
-            if (requiresGoogleReleaseSigning && !hasGoogleReleaseSigning) {
-                throw GradleException(
-                    "Missing google release signing config. Ensure app/src/google/google-release.keystore exists or set " +
-                        "ANDROID_SIGNING_STORE_FILE, ANDROID_SIGNING_STORE_PASSWORD, ANDROID_SIGNING_KEY_ALIAS, " +
-                        "and ANDROID_SIGNING_KEY_PASSWORD."
-                )
             }
             proguardFiles(
                 getDefaultProguardFile(releaseDefaultProguardFile),

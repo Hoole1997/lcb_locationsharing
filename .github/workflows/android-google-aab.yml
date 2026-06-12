@@ -131,11 +131,6 @@ jobs:
 
       - name: Resolve version info
         id: version_info
-        env:
-          ANDROID_SIGNING_STORE_FILE: ${{ env.KEYSTORE_GRADLE_PATH }}
-          ANDROID_SIGNING_STORE_PASSWORD: ${{ env.KEYSTORE_PASSWORD }}
-          ANDROID_SIGNING_KEY_ALIAS: ${{ env.KEYSTORE_ALIAS }}
-          ANDROID_SIGNING_KEY_PASSWORD: ${{ env.KEY_PASSWORD }}
         run: |
           set -euo pipefail
           COMMON_GRADLE_ARGS=(
@@ -153,13 +148,11 @@ jobs:
           echo "aab_name=$AAB_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Build signed googleRelease AAB
-        env:
-          ANDROID_SIGNING_STORE_FILE: ${{ env.KEYSTORE_GRADLE_PATH }}
-          ANDROID_SIGNING_STORE_PASSWORD: ${{ env.KEYSTORE_PASSWORD }}
-          ANDROID_SIGNING_KEY_ALIAS: ${{ env.KEYSTORE_ALIAS }}
-          ANDROID_SIGNING_KEY_PASSWORD: ${{ env.KEY_PASSWORD }}
         run: |
           set -euo pipefail
+          test -s "$KEYSTORE_GRADLE_PATH"
+          ls -l "$KEYSTORE_GRADLE_PATH"
+
           COMMON_GRADLE_ARGS=(
             "-Dorg.gradle.jvmargs=${GRADLE_JVM_ARGS}"
             "-Dkotlin.daemon.jvmargs=${KOTLIN_DAEMON_JVM_ARGS}"
