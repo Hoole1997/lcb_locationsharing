@@ -99,7 +99,12 @@ val hasGoogleReleaseSigning = googleReleaseKeystoreFile.isFile &&
     googleReleaseKeyPassword.isNotEmpty()
 val requiresGoogleReleaseSigning = gradle.startParameter.taskNames.any { taskName ->
     val lowerTaskName = taskName.lowercase()
-    lowerTaskName.contains("google") && lowerTaskName.contains("release")
+    lowerTaskName.contains("googlerelease") &&
+        (
+            lowerTaskName.contains("bundle") ||
+                lowerTaskName.contains("assemble") ||
+                lowerTaskName.contains("package")
+            )
 }
 val googleReleaseAabName = "lcb_template_release_$resolvedVersionName.aab"
 val releaseMinifyEnabled = booleanGradleProperty("android.release.minifyEnabled", true)

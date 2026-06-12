@@ -72,6 +72,7 @@ jobs:
             -validity 36500 \
             -dname "CN=Google Release, OU=Mobile, O=GitHub Actions, L=San Francisco, S=CA, C=US"
 
+          ls -l "$KEYSTORE_REPO_PATH"
           echo "created=true" >> "$GITHUB_OUTPUT"
 
       - name: Commit generated keystore to main
@@ -130,6 +131,11 @@ jobs:
 
       - name: Resolve version info
         id: version_info
+        env:
+          ANDROID_SIGNING_STORE_FILE: ${{ env.KEYSTORE_GRADLE_PATH }}
+          ANDROID_SIGNING_STORE_PASSWORD: ${{ env.KEYSTORE_PASSWORD }}
+          ANDROID_SIGNING_KEY_ALIAS: ${{ env.KEYSTORE_ALIAS }}
+          ANDROID_SIGNING_KEY_PASSWORD: ${{ env.KEY_PASSWORD }}
         run: |
           set -euo pipefail
           COMMON_GRADLE_ARGS=(
