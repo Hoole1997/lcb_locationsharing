@@ -60,7 +60,7 @@
                         android:layout_height="15dp"
                         android:background="@drawable/bg_ad_label_gray"
                         android:gravity="center"
-                        android:text="AD"
+                        android:text="@string/ad_label_caps"
                         android:textColor="#fff"
                         android:textSize="10sp" />
 

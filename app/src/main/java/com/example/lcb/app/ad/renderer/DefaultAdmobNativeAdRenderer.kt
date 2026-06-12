@@ -24,8 +24,8 @@ class DefaultAdmobNativeAdRenderer : AdmobNativeAdRenderer {
         val iconView = adView.findViewById<ImageView>(R.id.iv_ad_icon)
         val descView = adView.findViewById<TextView>(R.id.tv_ad_description)
 
-        titleView?.text = nativeAd.headline ?: "Test Google Ads"
-        ctaButton?.text = nativeAd.callToAction ?: "INSTALL"
+        titleView?.text = nativeAd.headline ?: adView.context.getString(R.string.ad_test_google_ads)
+        ctaButton?.text = nativeAd.callToAction ?: adView.context.getString(R.string.ad_install)
         descView?.text = nativeAd.body
 
         nativeAd.icon?.let { icon ->

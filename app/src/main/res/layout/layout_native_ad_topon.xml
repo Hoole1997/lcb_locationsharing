@@ -18,7 +18,7 @@
         android:paddingTop="1dp"
         android:paddingEnd="4dp"
         android:paddingBottom="1dp"
-        android:text="Ad"
+        android:text="@string/ad_label"
         android:textColor="#FFFFFF"
         android:textSize="10sp"
         android:textStyle="bold" />

@@ -56,7 +56,7 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-light"
                 android:maxLines="1"
-                android:text="Test TopOn Ads"
+                android:text="@string/ad_test_topon_ads"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -69,7 +69,7 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-light"
                 android:maxLines="1"
-                android:text="desc"
+                android:text="@string/ad_test_topon_desc"
                 android:textColor="#666666"
                 android:textSize="12sp" />
 
@@ -85,7 +85,7 @@
             android:gravity="center"
             android:paddingHorizontal="12dp"
             android:singleLine="true"
-            android:text="INSTALL"
+            android:text="@string/ad_install"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

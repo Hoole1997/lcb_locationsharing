@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settingsToolbar"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="44dp"
+        android:background="@android:color/transparent"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/back"
+        app:title="">
+
+        <TextView
+            android:id="@+id/settingsToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="@string/settings"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/settingsList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/languageItem"
+            style="@style/Widget.Settings.Item"
+            android:layout_height="53dp">
+
+            <ImageView
+                style="@style/Widget.Settings.ItemIcon"
+                android:src="@drawable/ic_settings_language" />
+
+            <TextView
+                style="@style/Widget.Settings.ItemText"
+                android:text="@string/settings_language" />
+
+            <ImageView
+                style="@style/Widget.Settings.ItemArrow"
+                android:src="@drawable/ic_settings_chevron_right" />
+        </LinearLayout>
+
+        <View style="@style/Widget.Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/aboutItem"
+            style="@style/Widget.Settings.Item"
+            android:layout_height="52dp">
+
+            <ImageView
+                style="@style/Widget.Settings.ItemIcon"
+                android:src="@drawable/ic_settings_about" />
+
+            <TextView
+                style="@style/Widget.Settings.ItemText"
+                android:text="@string/settings_about_me" />
+
+            <ImageView
+                style="@style/Widget.Settings.ItemArrow"
+                android:src="@drawable/ic_settings_chevron_right" />
+        </LinearLayout>
+
+        <View style="@style/Widget.Settings.Divider" />
+
+        <LinearLayout
+            android:id="@+id/privacyItem"
+            style="@style/Widget.Settings.Item"
+            android:layout_height="56dp">
+
+            <ImageView
+                style="@style/Widget.Settings.ItemIcon"
+                android:src="@drawable/ic_settings_privacy" />
+
+            <TextView
+                style="@style/Widget.Settings.ItemText"
+                android:text="@string/settings_privacy_policy" />
+
+            <ImageView
+                style="@style/Widget.Settings.ItemArrow"
+                android:src="@drawable/ic_settings_chevron_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/settingsNativeAdContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

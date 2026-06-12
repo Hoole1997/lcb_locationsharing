@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="86dp">
+
+    <ImageView
+        android:id="@+id/sharedFriendAvatar"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_realtime_avatar_female"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sharedFriendName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#333333"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/sharedFriendTime"
+        app:layout_constraintStart_toEndOf="@id/sharedFriendAvatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sharedFriendAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="0dp"
+        android:maxLines="2"
+        android:textColor="#666666"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@id/sharedFriendMoreButton"
+        app:layout_constraintStart_toEndOf="@id/sharedFriendAvatar"
+        app:layout_constraintTop_toBottomOf="@id/sharedFriendName" />
+
+    <TextView
+        android:id="@+id/sharedFriendTime"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="sans-serif"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sharedFriendName" />
+
+    <ImageButton
+        android:id="@+id/sharedFriendMoreButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/friend_action_more"
+        android:padding="5dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_more_vertical_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/sharedFriendDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_realtime_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

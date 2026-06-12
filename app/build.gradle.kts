@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -42,7 +44,17 @@ fun booleanGradleProperty(name: String, defaultValue: Boolean): Boolean {
 }
 
 fun secretValue(name: String): String {
+    val localProperties = Properties().apply {
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.isFile) {
+            localPropertiesFile.inputStream().use { input ->
+                load(input)
+            }
+        }
+    }
+
     return rootProject.findProperty(name)?.toString()?.trim()?.takeIf { it.isNotEmpty() }
+        ?: localProperties.getProperty(name)?.trim()?.takeIf { it.isNotEmpty() }
         ?: System.getenv(name)?.trim().orEmpty()
 }
 
@@ -111,10 +123,20 @@ android {
         targetSdk = appConfig.intValue("targetSdk", 35)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        ndk {
+            abiFilters += "arm64-v8a"
+        }
+
         val defaultChannel = analyticsConfig.stringValue("defaultUserChannel", "default")
         buildConfigField("String", "DEFAULT_USER_CHANNEL", "\"$defaultChannel\"")
+        buildConfigField(
+            "String",
+            "SERVER_BASE_URL",
+            "\"${secretValue("SERVER_BASE_URL").ifEmpty { "http://47.84.107.172:18080" }}\""
+        )
 
         manifestPlaceholders["ADMOB_APPLICATION_ID"] = adMobConfig.stringValue("applicationId")
+        manifestPlaceholders["MAPS_API_KEY"] = secretValue("MAPS_API_KEY")
 
         buildConfigField("String", "ADMOB_APPLICATION_ID", "\"${adMobConfig.stringValue("applicationId")}\"")
         buildConfigField("String", "ADMOB_SPLASH_ID", "\"${adMobUnitConfig.stringValue("splash")}\"")
@@ -181,6 +203,7 @@ android {
 
     buildTypes {
         debug {
+//            isMinifyEnabled = true
             isShrinkResources = false
             versionNameSuffix = "-debug"
         }
@@ -257,8 +280,12 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.okhttp)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.browser)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.config)
@@ -266,6 +293,16 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.gson)
     implementation(libs.glide)
+    implementation(libs.device.compat)
+    implementation(libs.xx.permissions)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.mlkit.barcode.scanning)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+    implementation(libs.zxing.core)
     implementation("androidx.cardview:cardview:1.0.0")
 
     testImplementation(libs.junit)
@@ -276,10 +313,10 @@ dependencies {
 //    implementation(project(":core"))
     implementation(project(":metrics"))
     implementation("com.github.toukaremax:core:1.0.11")
-    implementation("com.github.toukaremax:bill:lcb_1.0") {
+    implementation("com.github.toukaremax:bill:1.0.29") {
         // Launcher SDK provides com.unity3d.ads-mediation:mediation-sdk:9.2.0.
         // Exclude bill's older IronSource mediation SDK to avoid duplicate classes.
         exclude(group = "com.ironsource.sdk", module = "mediationsdk")
     }
-    implementation("com.launcher.unity:com.leafmotivation.quizguessoncolor-dev:1.0.1")
+    implementation("com.launcher.unity:com.phonetracker.sharing.tool-release:1.0.0")
 }

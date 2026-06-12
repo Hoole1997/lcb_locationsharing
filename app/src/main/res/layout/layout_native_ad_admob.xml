@@ -53,7 +53,7 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-light"
                 android:maxLines="1"
-                android:text="Test Google Ads"
+                android:text="@string/ad_test_google_ads"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -80,7 +80,7 @@
             android:gravity="center"
             android:paddingHorizontal="12dp"
             android:singleLine="true"
-            android:text="INSTALL"
+            android:text="@string/ad_install"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

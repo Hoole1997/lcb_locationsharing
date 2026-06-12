@@ -38,13 +38,15 @@ dependencyResolutionManagement {
             url = uri("https://maven.pkg.github.com/toukaRemax/remax_sdk")
             credentials {
                 username = buildConfig.getProperty("github.user") ?: System.getenv("GITHUB_ACTOR")
-                password = buildConfig.getProperty("github.token") ?: System.getenv("GITHUB_TOKEN")
+                password = buildConfig.getProperty("github.token")
+                    ?: System.getenv("PACKAGES_READ_TOKEN")
+                    ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
 }
 
-rootProject.name = "LCB_Template"
+rootProject.name = "LCB_LocationSharing"
 include(":app")
 //include(":bill")
 //include(":core")

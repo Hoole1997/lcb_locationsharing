@@ -29,7 +29,7 @@ class DefaultGamFullScreenNativeAdRenderer : GamFullScreenNativeAdRenderer {
 
         titleView?.text = nativeAd.headline.orEmpty()
         descView?.text = nativeAd.body.orEmpty()
-        ctaButton?.text = nativeAd.callToAction ?: "OPEN"
+        ctaButton?.text = nativeAd.callToAction ?: adView.context.getString(R.string.ad_open)
         nativeAd.icon?.drawable?.let {
             iconView?.setImageDrawable(it)
             iconView?.visibility = View.VISIBLE
